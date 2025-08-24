@@ -125,8 +125,6 @@
     renderSummary(filtered);
   
     const showList  = VIEW === 'list';
-    listEl?.classList.toggle('hidden', !showList);
-    boardEl?.classList.toggle('hidden', showList);
   
     if (showList) {
       renderList(filtered);
