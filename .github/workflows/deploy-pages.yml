@@ -1,0 +1,61 @@
+name: Deploy Planning Site
+
+on:
+  push:
+    branches: [ main, master ]   # 兩種預設分支都支援
+  workflow_dispatch:
+
+# 這兩個權限是 Pages 部署所必需
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # 推薦：先 configure-pages，讓 GitHub 預先產生必要的設定
+      - uses: actions/configure-pages@v4
+
+      # 產生最新 index.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build index.json
+        run: |
+          python scripts/build_index.py
+
+      # 準備要部署的靜態內容
+      - name: Prepare artifact
+        run: |
+          mkdir dist
+          cp -r site dist/site
+          cp -r public dist/public
+          cp -r plans dist/plans
+          cp README.md dist/
+
+      # 上傳成 Pages Artifact（deploy job 會取用）
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    # 建議保持這個 environment 名稱，deploy-pages 會自動產生
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    # deploy-pages 會讀取上一步的 artifact 進行發布
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
