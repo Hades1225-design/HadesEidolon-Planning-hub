@@ -120,57 +120,37 @@
     });
   }
 
+
+  // 放在 app.js 裡（render 上方即可）
+  function show(el){
+    if (!el) return;
+    el.style.display = '';       // 交給預設/外層排版
+    el.classList.remove('hidden');
+    el.setAttribute('aria-hidden', 'false');
+  }
+  function hide(el){
+    if (!el) return;
+    el.style.display = 'none';   // 強制隱藏
+    el.classList.add('hidden');
+    el.setAttribute('aria-hidden', 'true');
+  }
+  
+  // 然後把 render 的切換改成用 show/hide
   function render(){
     const filtered = applyFilters(DATA);
     renderSummary(filtered);
   
     const showList  = VIEW === 'list';
-      listEl?.classList.toggle('hidden', !showList); 
-      boardEl?.classList.toggle('hidden', showList);
     if (showList) {
+      show(listEl);
+      hide(boardEl);
       renderList(filtered);
     } else {
+      hide(listEl);
+      show(boardEl);
       renderBoard(filtered);
     }
   }
-
-  // 1) 支援 from URL
-const hash = (location.hash || '').replace('#','');
-if (hash === 'both') VIEW = 'both';
-
-// 2)（可選）若你有第三顆按鈕
-const viewBothBtn = document.querySelector('#view-both, [data-view="both"]');
-viewBothBtn?.addEventListener('click', () => {
-  VIEW = 'both';
-  history.replaceState(null, '', '#both');
-  render();
-});
-
-// 3) render() 補上 'both' 分支
-function render(){
-  const filtered = applyFilters(DATA);
-  renderSummary(filtered);
-
-  if (VIEW === 'both') {
-    listEl?.classList.remove('hidden');
-    boardEl?.classList.remove('hidden');
-    renderList(filtered);
-    renderBoard(filtered);
-    return;
-  }
-
-  if (VIEW === 'list') {
-    listEl?.classList.remove('hidden');
-    boardEl?.classList.add('hidden');
-    renderList(filtered);
-  } else {
-    listEl?.classList.add('hidden');
-    boardEl?.classList.remove('hidden');
-    renderBoard(filtered);
-  }
-}
-
-
 
   qEl.addEventListener('input', render);
   statusEl.addEventListener('change', render);
