@@ -140,8 +140,8 @@
   statusEl.addEventListener('change', render);
   areaEl.addEventListener('change', render);
   prioEl.addEventListener('change', render);
-  viewListBtn.addEventListener('click', () => { VIEW='list'; viewListBtn.classList.add('active'); viewBoardBtn.classList.remove('active'); render(); });
-  viewBoardBtn.addEventListener('click', () => { VIEW='board'; viewBoardBtn.classList.add('active'); viewListBtn.classList.remove('active'); render(); });
+  viewListBtn.addEventListener('click', () => { VIEW='list'; listEl?.classList.remove('hidden'); boardEl?.classList.add('hidden'); viewListBtn.classList.add('active'); viewBoardBtn.classList.remove('active'); render(); });
+  viewBoardBtn.addEventListener('click', () => { VIEW='board'; listEl?.classList.add('hidden'); boardEl?.classList.remove('hidden'); viewBoardBtn.classList.add('active'); viewListBtn.classList.remove('active'); render(); });
 
   load();
 })();
