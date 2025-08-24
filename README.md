@@ -13,7 +13,7 @@
    - `build-index.yml`：建立/更新 PR 以提交 `public/index.json`
    - `deploy-pages.yml`：部署 `site/` + `public/` 到 GitHub Pages
 
-發布的頁面網址：**https://Hades1225-design.github.io/HadesEidolon-Planning-hub/**
+發布的頁面網址：**https://Hades1225-design.github.io/HadesEidolon-Planning-hub/site/**
 
 ---
 
