@@ -1,0 +1,53 @@
+name: Build index.json
+
+on:
+  push:
+    branches: [ main, master ]    # 同時支援 main 和 master
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  build-index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Build index.json
+        run: |
+          python scripts/build_index.py
+
+      - name: Configure Git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      # 建立 / 更新專用分支
+      - name: Create or switch to update branch
+        run: |
+          git checkout -B ci/update-index
+
+      - name: Commit changes if any
+        id: commit
+        run: |
+          git add public/index.json
+          if git diff --cached --quiet; then
+            echo "no_changes=true" >> $GITHUB_OUTPUT
+          else
+            git commit -m "chore(index): update public/index.json"
+          fi
+
+      - name: Push branch
+        if: steps.commit.outputs.no_changes != 'true'
+        run: git push --set-upstream origin ci/update-index --force
+
+      # 🔹 修正這裡：指定 PR base 為預設分支，避免 b
