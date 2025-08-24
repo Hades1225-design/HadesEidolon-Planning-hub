@@ -1,50 +1,71 @@
 (function(){
-  const $ = (s) => document.querySelector(s);
-  const listEl = $('#list');
-  const qEl = $('#q');
-  const statusEl = $('#status');
-  const areaEl = $('#area');
-  const prioEl = $('#priority');
-  const summaryStatus = $('#summary-status');
-  const summaryDonut = $('#summary-donut');
-  const viewListBtn = $('#view-list');
-  const viewBoardBtn = $('#view-board');
-  const boardEl = $('#board');
-
+  // ====== State ======
   let DATA = [];
-  let VIEW = 'list';
+  let VIEW = 'list'; // 預設先顯示清單
 
-  async function load() {
+  // 這裡預設讀取站內的 index.json。若要固定讀取 ci/update-index 分支的 RAW，改成下行註解
+  const INDEX_URL = '../public/index.json';
+  // const INDEX_URL = 'https://raw.githubusercontent.com/Hades1225-design/HadesEidolon-Planning-hub/refs/heads/ci/update-index/public/index.json';
+
+  // ====== Helpers ======
+  const esc = (s) => (s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+  const statusClass = s => s ? `badge status-${s}` : 'badge';
+  const riskClass   = r => r ? `badge risk-${r}`   : 'badge';
+
+  // 這些節點改為在 DOM 讀取完成後再抓
+  let $ = null;
+  let listEl, qEl, statusEl, areaEl, prioEl, summaryStatus, summaryDonut, viewListBtn, viewBoardBtn, boardEl;
+
+  function safeQueryAll() {
+    $ = (s) => document.querySelector(s);
+    listEl         = $('#list');
+    qEl            = $('#q');
+    statusEl       = $('#status');
+    areaEl         = $('#area');
+    prioEl         = $('#priority');
+    summaryStatus  = $('#summary-status');
+    summaryDonut   = $('#summary-donut');
+    viewListBtn    = $('#view-list');
+    viewBoardBtn   = $('#view-board');
+    boardEl        = $('#board');
+  }
+
+  // ====== Data load (方案 2 核心) ======
+  async function initBoardData() {
     try {
-      const res = await fetch('../public/index.json', {cache: 'no-store'});
+      const res  = await fetch(INDEX_URL, { cache: 'no-store' });
       const json = await res.json();
       DATA = json.items || [];
       render();
     } catch (e) {
-      listEl.innerHTML = '<div class="empty">讀取 public/index.json 失敗，請確認部署路徑。</div>';
+      if (listEl) {
+        listEl.innerHTML = '<div class="error">讀取 public/index.json 失敗，請確認部署路徑。</div>';
+      }
+      console.error('載入 index.json 失敗: ', e);
     }
   }
 
-  function esc(s){return (s||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
-  const statusClass = s => s ? `badge status-${s}` : 'badge';
-  const riskClass = r => r ? `badge risk-${r}` : 'badge';
-
+  // ====== Filters & Render ======
   function filters(){
-    const q = (qEl.value || '').toLowerCase().trim();
-    const status = statusEl.value;
-    const area = areaEl.value;
-    const prio = prioEl.value;
-    return {q,status,area,prio};
+    const q = (qEl?.value || '').toLowerCase().trim();
+    const status = statusEl?.value || '';
+    const area   = areaEl?.value   || '';
+    const prio   = prioEl?.value   || '';
+    return { q, status, area, prio };
   }
 
   function applyFilters(items){
-    const {q,status,area,prio} = filters();
+    const { q, status, area, prio } = filters();
     return items.filter(it => {
       if (status && it.status !== status) return false;
-      if (area && it.area !== area) return false;
-      if (prio && it.priority !== prio) return false;
+      if (area   && it.area   !== area)   return false;
+      if (prio   && it.priority !== prio) return false;
       if (q) {
-        const hay = [it.title, it.area, it.priority, it.status, (it.tags||[]).join(','), (it.preview||'')].join(' ').toLowerCase();
+        const hay = [
+          it.title, it.area, it.priority, it.status,
+          (it.tags||[]).join(','), (it.preview||'')
+        ].join(' ').toLowerCase();
         if (!hay.includes(q)) return false;
       }
       return true;
@@ -52,28 +73,29 @@
   }
 
   function renderSummary(items){
-    const counts = {inbox:0, ongoing:0, done:0};
+    if (!summaryStatus || !summaryDonut) return;
+    const counts = { inbox:0, ongoing:0, done:0 };
     items.forEach(it => { if (counts[it.status] !== undefined) counts[it.status]++; });
+
     summaryStatus.innerHTML = `
-      <span class="badge status-inbox">規劃中: ${counts.inbox}</span>
-      <span class="badge status-ongoing">進行中: ${counts.ongoing}</span>
-      <span class="badge status-done">已完成: ${counts.done}</span>
+      <span class="mr-2">規劃中: ${counts.inbox}</span>
+      <span class="mr-2">進行中: ${counts.ongoing}</span>
+      <span>已完成: ${counts.done}</span>
     `;
+
     const total = Math.max(1, items.length);
-    const seg = (n) => 2*Math.PI*40*(n/total);
-    const C = 50, R = 40, dash = 2*Math.PI*R;
+    const R = 40, C = 50, dash = 2*Math.PI*R;
+    const seg = (n) => 2*Math.PI*R*(n/total);
     const dInbox = seg(counts.inbox), dOng = seg(counts.ongoing), dDone = seg(counts.done);
+
     summaryDonut.innerHTML = `
-      <svg width="110" height="110" viewBox="0 0 110 110" role="img">
-        <circle cx="${C}" cy="${C}" r="${R}" fill="none" stroke="#f0f0f0" stroke-width="10"></circle>
-        <circle cx="${C}" cy="${C}" r="${R}" fill="none" stroke="#d9d9d9" stroke-width="10"
-          stroke-dasharray="${dInbox} ${dash}" transform="rotate(-90 ${C} ${C})"></circle>
-        <circle cx="${C}" cy="${C}" r="${R}" fill="none" stroke="#ffd591" stroke-width="10"
-          stroke-dasharray="${dOng} ${dash}" transform="rotate(${(dInbox/dash)*360-90} ${C} ${C})"></circle>
-        <circle cx="${C}" cy="${C}" r="${R}" fill="none" stroke="#b7eb8f" stroke-width="10"
-          stroke-dasharray="${dDone} ${dash}" transform="rotate(${((dInbox+dOng)/dash)*360-90} ${C} ${C})"></circle>
-        <text x="${C}" y="${C+4}" text-anchor="middle" font-size="14">${items.length}</text>
+      <svg viewBox="0 0 ${C*2} ${C*2}" width="112" height="112" role="img" aria-label="計畫狀態圓環圖">
+        <circle cx="${C}" cy="${C}" r="${R}" fill="none" stroke-width="10" stroke-dasharray="${dash}" class="donut-bg"></circle>
+        <circle cx="${C}" cy="${C}" r="${R}" fill="none" stroke-width="10" stroke-dasharray="${dInbox} ${dash - dInbox}" class="donut-inbox"></circle>
+        <circle cx="${C}" cy="${C}" r="${R}" fill="none" stroke-width="10" stroke-dasharray="${dOng} ${dash - dOng}" class="donut-ongoing" transform="rotate(120, ${C}, ${C})"></circle>
+        <circle cx="${C}" cy="${C}" r="${R}" fill="none" stroke-width="10" stroke-dasharray="${dDone} ${dash - dDone}" class="donut-done" transform="rotate(240, ${C}, ${C})"></circle>
       </svg>
+      <div class="donut-total">${items.length}</div>
     `;
   }
 
@@ -81,42 +103,48 @@
     const tags = (it.tags||[]).map(t => `<span class="tag">${esc(t)}</span>`).join('');
     const meta = [
       `<span class="${statusClass(it.status)}">${esc(it.status||'')}</span>`,
+      `<span class="${riskClass(it.risk)}">${it.risk ? `risk:${esc(it.risk)}` : ''}</span>`,
       `<span class="badge">${esc(it.area||'')}</span>`,
       `<span class="badge">${esc(it.priority||'')}</span>`,
       it.owner ? `<span class="badge">owner:${esc(it.owner)}</span>` : '',
-      it.due ? `<span class="badge">due:${esc(it.due)}</span>` : ''
+      it.due   ? `<span class="badge">due:${esc(it.due)}</span>`     : ''
     ].filter(Boolean).join(' ');
 
-    const risk = it.risk ? `<span class="${riskClass(it.risk)}">risk:${esc(it.risk)}</span>` : '';
     const progBar = Number.isInteger(it.progress)
-      ? `<div class="progress"><i style="width:${Math.min(100, Math.max(0, it.progress))}%"></i></div>` : '';
+      ? `<div class="progress"><div class="bar" style="width:${it.progress}%;"></div><span class="pct">${it.progress}%</span></div>`
+      : '';
 
-    return `<article class="card">
-      <div class="row">
-        <h3>${esc(it.title)}</h3>
-        <span class="spacer"></span>
-        ${risk}
-      </div>
-      <div class="meta">${meta}</div>
-      <div class="tags">${tags}</div>
-      ${progBar}
-      <div class="preview">${esc((it.preview||'').slice(0,180))}</div>
-      <a href="../${it.path}" target="_blank" rel="noopener">檢視原始檔</a>
-    </article>`;
+    return `
+      <article class="card">
+        <h3 class="title">${esc(it.title)}</h3>
+        <div class="meta">${meta}</div>
+        <div class="tags">${tags}</div>
+        ${progBar}
+        <p class="preview">${esc((it.preview||'').slice(0,180))}</p>
+        <div class="card-actions">
+          <a class="btn btn-sm" href="${esc(it.url || '#')}" target="_blank" rel="noopener">檢視原始檔</a>
+        </div>
+      </article>
+    `;
   }
 
   function renderList(items){
-    if (!items.length) { listEl.innerHTML = '<div class="empty">沒有符合條件的計劃。</div>'; return; }
+    if (!listEl) return;
+    if (!items.length) {
+      listEl.innerHTML = '<div class="empty">沒有符合條件的計劃。</div>';
+      return;
+    }
     listEl.innerHTML = items.map(card).join('');
   }
 
   function renderBoard(items){
-    boardEl.querySelectorAll('.col-body').forEach(n => n.innerHTML = '');
-    const cols = {inbox:[], ongoing:[], done:[]};
+    if (!boardEl) return;
+    boardEl.querySelectorAll('.col-body').forEach(n => (n.innerHTML = ''));
+    const cols = { inbox:[], ongoing:[], done:[] };
     items.forEach(it => (cols[it.status] || cols.inbox).push(it));
     ['inbox','ongoing','done'].forEach(k => {
       const wrap = boardEl.querySelector(`.col[data-col="${k}"] .col-body`);
-      wrap.innerHTML = cols[k].map(card).join('');
+      if (wrap) wrap.innerHTML = cols[k].map(card).join('');
     });
   }
 
@@ -124,22 +152,41 @@
     const filtered = applyFilters(DATA);
     renderSummary(filtered);
     if (VIEW === 'list') {
-      listEl.classList.remove('hidden');
-      boardEl.classList.add('hidden');
+      listEl?.classList.remove('hidden');
+      boardEl?.classList.add('hidden');
       renderList(filtered);
+      viewListBtn?.classList.add('active');
+      viewBoardBtn?.classList.remove('active');
     } else {
-      listEl.classList.add('hidden');
-      boardEl.classList.remove('hidden');
+      listEl?.classList.add('hidden');
+      boardEl?.classList.remove('hidden');
       renderBoard(filtered);
+      viewBoardBtn?.classList.add('active');
+      viewListBtn?.classList.remove('active');
     }
   }
 
-  qEl.addEventListener('input', render);
-  statusEl.addEventListener('change', render);
-  areaEl.addEventListener('change', render);
-  prioEl.addEventListener('change', render);
-  viewListBtn.addEventListener('click', () => { VIEW='list'; viewListBtn.classList.add('active'); viewBoardBtn.classList.remove('active'); render(); });
-  viewBoardBtn.addEventListener('click', () => { VIEW='board'; viewBoardBtn.classList.add('active'); viewListBtn.classList.remove('active'); render(); });
+  // ====== Init (DOM ready 才做一切) ======
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1) 先抓節點（避免還沒建好就 render）
+    safeQueryAll();
 
-  load();
+    // 2) 綁事件
+    qEl?.addEventListener('input', render);
+    statusEl?.addEventListener('change', render);
+    areaEl?.addEventListener('change', render);
+    prioEl?.addEventListener('change', render);
+
+    viewListBtn?.addEventListener('click', () => {
+      VIEW = 'list';
+      render();
+    });
+    viewBoardBtn?.addEventListener('click', () => {
+      VIEW = 'board';
+      render();
+    });
+
+    // 3) 初始化資料（頁面打開就載入，不需要先點 Tab）
+    initBoardData();
+  });
 })();
