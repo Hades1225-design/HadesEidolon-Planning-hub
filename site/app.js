@@ -123,16 +123,18 @@
   function render(){
     const filtered = applyFilters(DATA);
     renderSummary(filtered);
-    if (VIEW === 'list') {
-      listEl.classList.remove('hidden');
-      boardEl.classList.add('hidden');
+  
+    const showList  = VIEW === 'list';
+    listEl?.classList.toggle('hidden', !showList);
+    boardEl?.classList.toggle('hidden', showList);
+  
+    if (showList) {
       renderList(filtered);
     } else {
-      listEl.classList.add('hidden');
-      boardEl.classList.remove('hidden');
       renderBoard(filtered);
     }
   }
+
 
   qEl.addEventListener('input', render);
   statusEl.addEventListener('change', render);
