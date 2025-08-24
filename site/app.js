@@ -101,7 +101,7 @@
       <div class="tags">${tags}</div>
       ${progBar}
       <div class="preview">${esc((it.preview||'').slice(0,180))}</div>
-      <a href="../${it.path}" target="_blank" rel="noopener">檢視原始檔</a>
+      <a class="btn btn-sm" href="detail.html?path=${encodeURIComponent(it.path||'')}" target="_self">詳情</a>
     </article>`;
   }
 
