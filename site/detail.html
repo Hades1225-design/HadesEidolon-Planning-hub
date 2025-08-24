@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>計劃詳情</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <style>
+    :root { --fg:#111827; --muted:#6b7280; --bd:#e5e7eb; --chip:#f3f4f6; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Noto Sans CJK TC", Segoe UI, Roboto, Arial, "Helvetica Neue", "Noto Sans", sans-serif; color:var(--fg); margin:0; }
+    .wrap { max-width: 960px; margin: 28px auto; padding: 0 16px; }
+    .toolbar { display:flex; gap:8px; align-items:center; margin-bottom: 16px; }
+    .toolbar .back { text-decoration:none; border:1px solid var(--bd); padding:6px 10px; border-radius:10px; }
+    h1 { font-size: 28px; margin: 10px 0 4px; }
+    .chips { display:flex; flex-wrap:wrap; gap:6px; margin: 8px 0 16px; }
+    .chip { background: var(--chip); border:1px solid var(--bd); border-radius:999px; padding:4px 10px; font-size:12px; color:#374151; }
+    .muted { color: var(--muted); font-size: 13px; }
+    .content { line-height: 1.75; }
+    .content pre { background:#0b1021; color:#eaeefb; padding:12px; border-radius:10px; overflow:auto; }
+    .content code { background:#f3f4f6; padding:2px 4px; border-radius:6px; }
+    .error { padding: 12px; background:#fef2f2; border:1px solid #fecaca; border-radius:10px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="toolbar">
+      <a class="back" href="./index.html">← 返回列表</a>
+      <span id="path" class="muted"></span>
+      <a id="editLink" class="back" style="margin-left:auto" target="_blank" rel="noopener">在 GitHub 編輯</a>
+    </div>
+
+    <header>
+      <h1 id="title">（載入中…）</h1>
+      <div class="chips" id="chips"></div>
+    </header>
+
+    <article class="content" id="content"></article>
+
+    <section id="error" class="error" style="display:none"></section>
+  </div>
+
+  <!-- 渲染工具：marked & DOMPurify -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js"></script>
+  <script src="./detail.js" defer></script>
+</body>
+</html>
