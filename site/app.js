@@ -1,19 +1,18 @@
 (function(){
   // ====== State ======
   let DATA = [];
-  let VIEW = 'list'; // 預設先顯示清單
+  let VIEW = 'list'; // 預設顯示清單（將在 DOM ready 時依據實際 active tab 覆寫）
 
-  // 這裡預設讀取站內的 index.json。若要固定讀取 ci/update-index 分支的 RAW，改成下行註解
+  // 預設讀取站內 index.json。若要固定讀取 ci/update-index 的 RAW，改用下行註解
   const INDEX_URL = '../public/index.json';
   // const INDEX_URL = 'https://raw.githubusercontent.com/Hades1225-design/HadesEidolon-Planning-hub/refs/heads/ci/update-index/public/index.json';
 
   // ====== Helpers ======
   const esc = (s) => (s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-
   const statusClass = s => s ? `badge status-${s}` : 'badge';
   const riskClass   = r => r ? `badge risk-${r}`   : 'badge';
 
-  // 這些節點改為在 DOM 讀取完成後再抓
+  // 這些節點在 DOM 讀取完成後再抓
   let $ = null;
   let listEl, qEl, statusEl, areaEl, prioEl, summaryStatus, summaryDonut, viewListBtn, viewBoardBtn, boardEl;
 
@@ -168,8 +167,16 @@
 
   // ====== Init (DOM ready 才做一切) ======
   document.addEventListener('DOMContentLoaded', () => {
-    // 1) 先抓節點（避免還沒建好就 render）
+    // 1) 先抓節點
     safeQueryAll();
+
+    // 1.1 同步初始 VIEW：依據 DOM 上的 active 樣式或網址 hash
+    const hash = (location.hash || '').replace('#','');
+    if (hash === 'board' || hash === 'list') VIEW = hash;
+    const domActiveIsBoard = viewBoardBtn?.classList.contains('active') || viewBoardBtn?.getAttribute('aria-selected') === 'true';
+    const domActiveIsList  = viewListBtn?.classList.contains('active')  || viewListBtn?.getAttribute('aria-selected')  === 'true';
+    if (domActiveIsBoard) VIEW = 'board';
+    if (domActiveIsList)  VIEW = 'list';
 
     // 2) 綁事件
     qEl?.addEventListener('input', render);
@@ -177,16 +184,22 @@
     areaEl?.addEventListener('change', render);
     prioEl?.addEventListener('change', render);
 
-    viewListBtn?.addEventListener('click', () => {
+    viewListBtn?.addEventListener('click', (e) => {
       VIEW = 'list';
+      history.replaceState(null, '', '#list');
       render();
     });
-    viewBoardBtn?.addEventListener('click', () => {
+    viewBoardBtn?.addEventListener('click', (e) => {
       VIEW = 'board';
+      history.replaceState(null, '', '#board');
       render();
     });
 
-    // 3) 初始化資料（頁面打開就載入，不需要先點 Tab）
+    // 3) 先渲染一次（即使尚未有資料，避免初始 class 狀態不一致）
+    render();
+
+    // 4) 初始化資料（頁面打開就載入，不需要先點 Tab）。
+    //    載入完成後會再 render 一次。
     initBoardData();
   });
 })();
