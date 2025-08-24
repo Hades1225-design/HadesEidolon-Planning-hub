@@ -125,7 +125,8 @@
     renderSummary(filtered);
   
     const showList  = VIEW === 'list';
-  
+      listEl?.classList.toggle('hidden', !showList); 
+      boardEl?.classList.toggle('hidden', showList);
     if (showList) {
       renderList(filtered);
     } else {
@@ -133,13 +134,50 @@
     }
   }
 
+  // 1) 支援 from URL
+const hash = (location.hash || '').replace('#','');
+if (hash === 'both') VIEW = 'both';
+
+// 2)（可選）若你有第三顆按鈕
+const viewBothBtn = document.querySelector('#view-both, [data-view="both"]');
+viewBothBtn?.addEventListener('click', () => {
+  VIEW = 'both';
+  history.replaceState(null, '', '#both');
+  render();
+});
+
+// 3) render() 補上 'both' 分支
+function render(){
+  const filtered = applyFilters(DATA);
+  renderSummary(filtered);
+
+  if (VIEW === 'both') {
+    listEl?.classList.remove('hidden');
+    boardEl?.classList.remove('hidden');
+    renderList(filtered);
+    renderBoard(filtered);
+    return;
+  }
+
+  if (VIEW === 'list') {
+    listEl?.classList.remove('hidden');
+    boardEl?.classList.add('hidden');
+    renderList(filtered);
+  } else {
+    listEl?.classList.add('hidden');
+    boardEl?.classList.remove('hidden');
+    renderBoard(filtered);
+  }
+}
+
+
 
   qEl.addEventListener('input', render);
   statusEl.addEventListener('change', render);
   areaEl.addEventListener('change', render);
   prioEl.addEventListener('change', render);
-  viewListBtn.addEventListener('click', () => { VIEW='list'; listEl?.classList.remove('hidden'); boardEl?.classList.add('hidden'); viewListBtn.classList.add('active'); viewBoardBtn.classList.remove('active'); render(); });
-  viewBoardBtn.addEventListener('click', () => { VIEW='board'; listEl?.classList.add('hidden'); boardEl?.classList.remove('hidden'); viewBoardBtn.classList.add('active'); viewListBtn.classList.remove('active'); render(); });
+  viewListBtn.addEventListener('click', () => { VIEW='list'; viewListBtn.classList.add('active'); viewBoardBtn.classList.remove('active'); render(); });
+  viewBoardBtn.addEventListener('click', () => { VIEW='board'; viewBoardBtn.classList.add('active'); viewListBtn.classList.remove('active'); render(); });
 
   load();
 })();
