@@ -18,16 +18,29 @@
 
   function safeQueryAll() {
     $ = (s) => document.querySelector(s);
-    listEl         = $('#list');
-    qEl            = $('#q');
-    statusEl       = $('#status');
-    areaEl         = $('#area');
-    prioEl         = $('#priority');
-    summaryStatus  = $('#summary-status');
-    summaryDonut   = $('#summary-donut');
-    viewListBtn    = $('#view-list');
-    viewBoardBtn   = $('#view-board');
-    boardEl        = $('#board');
+
+    // 容器：盡量相容多種命名
+    listEl = document.querySelector('#list, #list-view, [data-pane="list"], [data-view="list"], [aria-labelledby="tab-list"], [id="pane-list"]');
+    boardEl = document.querySelector('#board, #board-view, [data-pane="board"], [data-view="board"], [aria-labelledby="tab-board"], [id="pane-board"]');
+
+    // 篩選器
+    qEl      = $('#q');
+    statusEl = $('#status');
+    areaEl   = $('#area');
+    prioEl   = $('#priority');
+
+    // 統計
+    summaryStatus = document.querySelector('#summary-status, [data-summary="status"]');
+    summaryDonut  = document.querySelector('#summary-donut,  [data-summary="donut"]');
+
+    // 分頁按鈕（支援 aria-controls / href / data-view）
+    const pickTabBtn = (forView) => (
+      document.querySelector(
+        `#view-${forView}, [data-view="${forView}"], [aria-controls="${forView}"], a[href="#${forView}"], button[href="#${forView}"]`
+      )
+    );
+    viewListBtn  = pickTabBtn('list');
+    viewBoardBtn = pickTabBtn('board');
   }
 
   // ====== Data load (方案 2 核心) ======
@@ -150,13 +163,38 @@
   function render(){
     const filtered = applyFilters(DATA);
     renderSummary(filtered);
+
+    // 若只有一種容器存在，就直接渲染該容器
+    if (listEl && !boardEl) {
+      listEl?.classList.remove('hidden');
+      renderList(filtered);
+      return;
+    }
+    if (boardEl && !listEl) {
+      boardEl?.classList.remove('hidden');
+      renderBoard(filtered);
+      return;
+    }
+
+    // 兩種容器皆存在時，依 VIEW 切換
     if (VIEW === 'list') {
       listEl?.classList.remove('hidden');
+      listEl?.removeAttribute('aria-hidden');
       boardEl?.classList.add('hidden');
+      boardEl?.setAttribute('aria-hidden','true');
       renderList(filtered);
       viewListBtn?.classList.add('active');
       viewBoardBtn?.classList.remove('active');
     } else {
+      listEl?.classList.add('hidden');
+      listEl?.setAttribute('aria-hidden','true');
+      boardEl?.classList.remove('hidden');
+      boardEl?.removeAttribute('aria-hidden');
+      renderBoard(filtered);
+      viewBoardBtn?.classList.add('active');
+      viewListBtn?.classList.remove('active');
+    }
+  } else {
       listEl?.classList.add('hidden');
       boardEl?.classList.remove('hidden');
       renderBoard(filtered);
@@ -173,8 +211,14 @@
     // 1.1 同步初始 VIEW：依據 DOM 上的 active 樣式或網址 hash
     const hash = (location.hash || '').replace('#','');
     if (hash === 'board' || hash === 'list') VIEW = hash;
-    const domActiveIsBoard = viewBoardBtn?.classList.contains('active') || viewBoardBtn?.getAttribute('aria-selected') === 'true';
-    const domActiveIsList  = viewListBtn?.classList.contains('active')  || viewListBtn?.getAttribute('aria-selected')  === 'true';
+    const domActiveIsBoard = viewBoardBtn?.classList?.contains('active')
+      || viewBoardBtn?.getAttribute?.('aria-selected') === 'true'
+      || viewBoardBtn?.getAttribute?.('aria-pressed') === 'true'
+      || viewBoardBtn?.getAttribute?.('aria-controls') === 'board';
+    const domActiveIsList  = viewListBtn?.classList?.contains('active')
+      || viewListBtn?.getAttribute?.('aria-selected') === 'true'
+      || viewListBtn?.getAttribute?.('aria-pressed') === 'true'
+      || viewListBtn?.getAttribute?.('aria-controls') === 'list';
     if (domActiveIsBoard) VIEW = 'board';
     if (domActiveIsList)  VIEW = 'list';
 
