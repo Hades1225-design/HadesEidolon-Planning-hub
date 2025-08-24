@@ -1,0 +1,108 @@
+{
+  "version": "1.0.0",
+  "generated_at": "2025-08-24T10:39:44.604616Z",
+  "items": [
+    {
+      "id": "plan-2025-08-23-hp800g5dm-thermal-vents",
+      "title": "HP800G5DM 機殼散熱孔設計與優化",
+      "area": "hackintosh",
+      "priority": "P1",
+      "status": "inbox",
+      "owner": "Hades",
+      "progress": 0,
+      "risk": "high",
+      "due": "2025-09-10",
+      "tags": [],
+      "links": [],
+      "path": "plans/inbox/hp800g5dm-thermal-vents.md",
+      "created": "2025-08-23",
+      "updated": "2025-08-23",
+      "preview": "## 目標",
+      "headings": [
+        "目標"
+      ]
+    },
+    {
+      "id": "plan-2025-08-23-hackintosh-stability",
+      "title": "黑蘋果穩定化研究",
+      "area": "hackintosh",
+      "priority": "P2",
+      "status": "inbox",
+      "owner": "Hades",
+      "progress": 5,
+      "risk": "medium",
+      "due": null,
+      "tags": [],
+      "links": [],
+      "path": "plans/inbox/hackintosh-stability.md",
+      "created": "2025-08-23",
+      "updated": "2025-08-23",
+      "preview": "## 目標",
+      "headings": [
+        "目標"
+      ]
+    },
+    {
+      "id": "plan-2025-08-23-ios18-voice",
+      "title": "iOS18 語音互動探索",
+      "area": "ios",
+      "priority": "P2",
+      "status": "inbox",
+      "owner": "Hades",
+      "progress": 15,
+      "risk": "medium",
+      "due": null,
+      "tags": [],
+      "links": [],
+      "path": "plans/inbox/ios18-voice-explore.md",
+      "created": "2025-08-23",
+      "updated": "2025-08-23",
+      "preview": "## 目標",
+      "headings": [
+        "目標"
+      ]
+    },
+    {
+      "id": "plan-2025-08-23-dialogue-journal",
+      "title": "《對話錄》節奏探索",
+      "area": "writing",
+      "priority": "P2",
+      "status": "inbox",
+      "owner": "Hades",
+      "progress": 10,
+      "risk": "low",
+      "due": null,
+      "tags": [],
+      "links": [],
+      "path": "plans/inbox/dialogue-journal-cadence.md",
+      "created": "2025-08-23",
+      "updated": "2025-08-23",
+      "preview": "## 目標",
+      "headings": [
+        "目標"
+      ]
+    },
+    {
+      "id": "plan-2025-08-24-planning-hub",
+      "title": "HadesEidolon-Planning-hub 專案建置與自動化",
+      "area": "infra",
+      "priority": "P0",
+      "status": "ongoing",
+      "owner": "Hades",
+      "progress": 45,
+      "risk": "medium",
+      "due": null,
+      "tags": [],
+      "links": [],
+      "path": "plans/ongoing/planning-hub-meta.md",
+      "created": "2025-08-24",
+      "updated": "2025-08-24",
+      "preview": "## 目標",
+      "headings": [
+        "目標",
+        "里程碑",
+        "下一步"
+      ]
+    }
+  ]
+}

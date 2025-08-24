@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>計劃中樞 | Planning Hub</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header>
+    <h1>計劃中樞</h1>
+    <p>此頁面直接讀取 <code>../public/index.json</code></p>
+  </header>
+
+  <section class="controls">
+    <input id="q" placeholder="搜尋標題 / 標籤 / 區域..." />
+    <select id="status">
+      <option value="">全部狀態</option>
+      <option value="inbox">規劃中</option>
+      <option value="ongoing">進行中</option>
+      <option value="done">已完成</option>
+    </select>
+    <select id="area">
+      <option value="">全部領域</option>
+      <option value="ios">iOS</option>
+      <option value="macos">MacOS</option>
+      <option value="hackintosh">黑蘋果</option>
+      <option value="writing">寫作</option>
+      <option value="web">前端/網站</option>
+      <option value="infra">基礎設施</option>
+      <option value="life">生活</option>
+    </select>
+    <select id="priority">
+      <option value="">全部優先</option>
+      <option value="P0">優先</option>
+      <option value="P1">普通</option>
+      <option value="P2">一般</option>
+    </select>
+  </section>
+
+  <section class="toolbar">
+    <div class="view-switch">
+      <button id="view-list" class="active">清單</button>
+      <button id="view-board">看板</button>
+    </div>
+    <div class="summary">
+      <div id="summary-status"></div>
+      <div id="summary-donut" aria-label="狀態分佈圖"></div>
+    </div>
+  </section>
+
+  <main id="list"></main>
+
+  <section id="board" class="board hidden">
+    <div class="col" data-col="inbox"><h4>規劃中</h4><div class="col-body"></div></div>
+    <div class="col" data-col="ongoing"><h4>進行中</h4><div class="col-body"></div></div>
+    <div class="col" data-col="done"><h4>已完成</h4><div class="col-body"></div></div>
+  </section>
+
+  <footer><small>&copy; 2025 Planning Hub</small></footer>
+  <script src="./app.js"></script>
+</body>
+</html>
