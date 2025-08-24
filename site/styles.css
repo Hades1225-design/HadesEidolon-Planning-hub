@@ -32,3 +32,7 @@ h1{margin:0 0 8px 0;font-weight:800}
 .card .row{display:flex;gap:8px;align-items:center}
 .card .row .spacer{flex:1}
 footer{padding:16px 20px;border-top:1px solid #eee;text-align:center;margin-top:20px}
+/* 同時顯示兩區時並排 */
+.split #list, .split #board { display:block; }
+.split { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
