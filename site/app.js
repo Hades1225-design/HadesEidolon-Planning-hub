@@ -17,7 +17,7 @@
 
   async function load() {
     try {
-      const res = await fetch('../public/index.json', {cache: 'no-store'});
+      const res = await fetch(INDEX_URL, {cache: 'no-store'});
       const json = await res.json();
       DATA = json.items || [];
       render();
