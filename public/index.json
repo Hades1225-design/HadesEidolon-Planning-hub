@@ -1,27 +1,7 @@
 {
   "version": "1.0.0",
-  "generated_at": "2025-08-24T10:39:44.604616Z",
+  "generated_at": "2025-08-25T02:16:37.440273Z",
   "items": [
-    {
-      "id": "plan-2025-08-23-hp800g5dm-thermal-vents",
-      "title": "HP800G5DM 機殼散熱孔設計與優化",
-      "area": "hackintosh",
-      "priority": "P1",
-      "status": "inbox",
-      "owner": "Hades",
-      "progress": 0,
-      "risk": "high",
-      "due": "2025-09-10",
-      "tags": [],
-      "links": [],
-      "path": "plans/inbox/hp800g5dm-thermal-vents.md",
-      "created": "2025-08-23",
-      "updated": "2025-08-23",
-      "preview": "## 目標",
-      "headings": [
-        "目標"
-      ]
-    },
     {
       "id": "plan-2025-08-23-hackintosh-stability",
       "title": "黑蘋果穩定化研究",
@@ -83,6 +63,37 @@
       ]
     },
     {
+      "id": "plan-2025-08-24-daily-planning",
+      "title": "每日計劃",
+      "area": "infra",
+      "priority": "P2",
+      "status": "inbox",
+      "owner": "Hades",
+      "progress": 0,
+      "risk": "medium",
+      "due": null,
+      "tags": [],
+      "links": [],
+      "path": "plans/inbox/daily-planning.md",
+      "created": "2025-08-24",
+      "updated": "2025-08-24",
+      "preview": "## 目標",
+      "headings": [
+        "目標",
+        "架構與資料流",
+        "檔案結構（新增）",
+        "JSON Schema（草案）",
+        "每日 Markdown 模板",
+        "今日目標（Top 3）",
+        "今日任務（連結計劃）",
+        "行程摘要",
+        "備忘 / 收件匣",
+        "里程碑",
+        "下一步（Next Actions）",
+        "風險與緩解"
+      ]
+    },
+    {
       "id": "plan-2025-08-24-planning-hub",
       "title": "HadesEidolon-Planning-hub 專案建置與自動化",
       "area": "infra",
@@ -101,7 +112,33 @@
       "headings": [
         "目標",
         "里程碑",
-        "下一步"
+        "下一步（Next Actions）— 2025-08-24"
+      ]
+    },
+    {
+      "id": "plan-2025-08-23-hp800g5dm-thermal-vents",
+      "title": "HP800G5DM 機殼散熱孔設計與優化",
+      "area": "hackintosh",
+      "priority": "P1",
+      "status": "done",
+      "owner": "Hades",
+      "progress": 100,
+      "risk": "high",
+      "due": "2025-09-10",
+      "tags": [],
+      "links": [],
+      "path": "plans/done/inboxhp800g5dm-thermal-vents.md",
+      "created": "2025-08-23",
+      "updated": "2025-08-24",
+      "preview": "## 目標",
+      "headings": [
+        "目標",
+        "成果摘要",
+        "里程碑",
+        "技術細節（摘要）",
+        "驗證與測試",
+        "文件與素材",
+        "後續建議"
       ]
     }
   ]
