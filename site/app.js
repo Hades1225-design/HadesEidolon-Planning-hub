@@ -10,14 +10,14 @@
   const viewListBtn = $('#view-list');
   const viewBoardBtn = $('#view-board');
   const boardEl = $('#board');
-  const index_URL = '../public/index.json'
+  const INDEX_URL = '../public/index.json'
 
   let DATA = [];
   let VIEW = 'list';
 
   async function load() {
     try {
-      const res = await fetch(index_URL, {cache: 'no-store'});
+      const res = await fetch(INDEX_URL, {cache: 'no-store'});
       const json = await res.json();
       DATA = json.items || [];
       render();
