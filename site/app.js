@@ -20,6 +20,15 @@
       const json = await res.json();
       DATA = json.items || [];
       render();
+
+      // 放在 load() 裡 res.json() 之後、render() 之後
+      const infoEl = document.getElementById('index-info') 
+        || Object.assign(document.createElement('div'), { id:'index-info', className:'muted' });
+      
+      document.querySelector('.toolbar .summary')?.appendChild(infoEl);
+      const ts = new Date(json.generated_at).toLocaleString('zh-TW', { hour12:false });
+      infoEl.textContent = `索引 ${ts}｜${(DATA||[]).length} 筆`;
+
     } catch (e) {
       listEl.innerHTML = '<div class="empty">讀取 public/index.json 失敗，請確認部署路徑。</div>';
     }
