@@ -10,6 +10,7 @@
   const viewListBtn = $('#view-list');
   const viewBoardBtn = $('#view-board');
   const boardEl = $('#board');
+  const INDEX_URL = './public/index.json'
 
   let DATA = [];
   let VIEW = 'list';
@@ -169,7 +170,85 @@
     }
   }
   
-  
+  // --- Reload control（沒有 DOM 也可用）---
+(function(){
+  const BTN_ID = 'reload-data';
+
+  function ensureReloadBtn(){
+    let btn = document.getElementById(BTN_ID);
+    if (btn) return btn;
+
+    btn = document.createElement('button');
+    btn.id = BTN_ID;
+    btn.type = 'button';
+    btn.textContent = '重新載入資料';
+
+    // 優先放在 toolbar；沒有就做懸浮鈕
+    const host =
+      document.querySelector('.toolbar .view-switch') ||
+      document.querySelector('.toolbar .summary') ||
+      document.querySelector('.toolbar');
+
+    if (host) {
+      host.appendChild(btn);
+    } else {
+      Object.assign(btn.style, {
+        position: 'fixed',
+        right: '16px',
+        bottom: '16px',
+        zIndex: 1000,
+        padding: '8px 12px',
+        borderRadius: '10px',
+        border: '1px solid #e5e7eb',
+        background: '#fff',
+        boxShadow: '0 2px 10px rgba(0,0,0,.08)',
+        cursor: 'pointer'
+      });
+      document.body.appendChild(btn);
+    }
+    return btn;
+  }
+
+  async function reload(force=true){
+    try{
+      // 若已有 load()（我之前給的保證版），優先走它
+      if (typeof load === 'function') {
+        try { await load(force); return; } catch (e) { /* fallback */ }
+      }
+      // fallback：直接抓 INDEX_URL
+      const url = force ? `${INDEX_URL}?v=${Date.now()}` : INDEX_URL;
+      const res = await fetch(url, { cache: 'no-store' });
+      const json = await res.json();
+      window.DATA = json.items || [];
+      if (typeof render === 'function') render();
+    } catch (err){
+      console.error('[reload failed]', err);
+    }
+  }
+
+  function wire(){
+    const btn = ensureReloadBtn();
+    btn.addEventListener('click', () => reload(true));
+
+    // 快捷鍵：Alt+R 強制重載
+    window.addEventListener('keydown', (e) => {
+      if (e.altKey && (e.key === 'r' || e.key === 'R')) {
+        e.preventDefault();
+        reload(true);
+      }
+    });
+
+    // 也掛一個全域方法給 Console 用
+    window.forceReload = () => reload(true);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wire);
+  } else {
+    wire();
+  }
+})();
+
 
 
   qEl.addEventListener('input', render);
