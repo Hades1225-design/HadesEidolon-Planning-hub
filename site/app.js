@@ -160,6 +160,15 @@
       renderBoard(filtered);
     }
   }
+  
+  document.getElementById('reload-data')?.addEventListener('click', async () => {
+    const url = `${INDEX_URL}?v=${Date.now()}`;
+    const res = await fetch(url, { cache:'no-store' });
+    const json = await res.json();
+    DATA = json.items || [];
+    render();
+  });
+
 
   qEl.addEventListener('input', render);
   statusEl.addEventListener('change', render);
