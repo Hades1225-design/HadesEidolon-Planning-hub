@@ -27,7 +27,15 @@
       
       document.querySelector('.toolbar .summary')?.appendChild(infoEl);
       const ts = new Date(json.generated_at).toLocaleString('zh-TW', { hour12:false });
-      infoEl.textContent = `索引 ${ts}｜${(DATA||[]).length} 筆`;
+      infoEl.textContent = `索引 ${ts}`;
+
+      document.getElementById('reload-data')?.addEventListener('click', async () => {
+        const url = `${INDEX_URL}?v=${Date.now()}`;
+        const res = await fetch(url, { cache:'no-store' });
+        const json = await res.json();
+        DATA = json.items || [];
+        render();
+      });
 
     } catch (e) {
       listEl.innerHTML = '<div class="empty">讀取 public/index.json 失敗，請確認部署路徑。</div>';
@@ -161,13 +169,7 @@
     }
   }
   
-  document.getElementById('reload-data')?.addEventListener('click', async () => {
-    const url = `${INDEX_URL}?v=${Date.now()}`;
-    const res = await fetch(url, { cache:'no-store' });
-    const json = await res.json();
-    DATA = json.items || [];
-    render();
-  });
+  
 
 
   qEl.addEventListener('input', render);
