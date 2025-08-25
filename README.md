@@ -42,5 +42,3 @@ site/
   build-index.yml
   deploy-pages.yml
 ```
-# HadesEidolon-Planning-hub
-# HadesEidolon-Planning-hub
