@@ -15,6 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
           persist-credentials: true
 
@@ -32,22 +33,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       # 建立 / 更新專用分支
-      - name: Create or switch to update branch
-        run: |
-          git checkout -B ci/update-index
-
-      - name: Commit changes if any
-        id: commit
-        run: |
-          git add public/index.json
-          if git diff --cached --quiet; then
-            echo "no_changes=true" >> $GITHUB_OUTPUT
-          else
-            git commit -m "chore(index): update public/index.json"
-          fi
-
-      - name: Push branch
-        if: steps.commit.outputs.no_changes != 'true'
-        run: git push --set-upstream origin ci/update-index --force
-
+      
       # 🔹 修正這裡：指定 PR base 為預設分支，避免 b
