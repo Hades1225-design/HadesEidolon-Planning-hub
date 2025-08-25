@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2025-08-25T15:29:35.028015Z",
+  "generated_at": "2025-08-25T15:38:04.318492Z",
   "items": [
     {
       "id": "plan-2025-08-23-hackintosh-stability",
@@ -94,6 +94,30 @@
       ]
     },
     {
+      "id": "plan-2025-08-25-nyxstream",
+      "title": "Project NyxStream",
+      "area": "web",
+      "priority": "P2",
+      "status": "inbox",
+      "owner": "Hades",
+      "progress": 0,
+      "risk": "medium",
+      "due": null,
+      "tags": [],
+      "links": [],
+      "path": "plans/inbox/Project-NyxStream.md",
+      "created": "2025-08-25",
+      "updated": "2025-08-25",
+      "preview": "## 目標",
+      "headings": [
+        "目標",
+        "背景",
+        "驗收標準",
+        "里程碑",
+        "下一步"
+      ]
+    },
+    {
       "id": "plan-2025-08-24-planning-hub",
       "title": "HadesEidolon-Planning-hub 專案建置與自動化",
       "area": "infra",
@@ -141,24 +165,6 @@
         "文件與素材",
         "後續建議"
       ]
-    },
-    {
-      "id": "",
-      "title": "",
-      "area": "",
-      "priority": "",
-      "status": "",
-      "owner": null,
-      "progress": null,
-      "risk": null,
-      "due": null,
-      "tags": [],
-      "links": [],
-      "path": "plans/inbox/Project-NyxStream.md",
-      "created": "",
-      "updated": "",
-      "preview": "",
-      "headings": []
     }
   ]
 }
