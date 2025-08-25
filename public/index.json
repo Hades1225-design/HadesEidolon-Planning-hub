@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2025-08-25T02:19:08.829766Z",
+  "generated_at": "2025-08-25T05:19:50.235218Z",
   "items": [
     {
       "id": "plan-2025-08-23-hackintosh-stability",
@@ -100,7 +100,7 @@
       "priority": "P0",
       "status": "ongoing",
       "owner": "Hades",
-      "progress": 45,
+      "progress": 60,
       "risk": "medium",
       "due": null,
       "tags": [],
@@ -112,7 +112,7 @@
       "headings": [
         "目標",
         "里程碑",
-        "下一步（Next Actions）— 2025-08-24"
+        "下一步（Next Actions）— 2025-08-25"
       ]
     },
     {
