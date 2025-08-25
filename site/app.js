@@ -10,7 +10,7 @@
   const viewListBtn = $('#view-list');
   const viewBoardBtn = $('#view-board');
   const boardEl = $('#board');
-  const index_URL = './public/index.json'
+  const index_URL = '../public/index.json'
 
   let DATA = [];
   let VIEW = 'list';
