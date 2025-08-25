@@ -15,10 +15,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
+          ref: main               # 明確抓 main
           fetch-depth: 0
-          persist-credentials: true
-
+          persist-credentials: true   # 預設就是 true，寫出來更直觀
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -33,5 +34,19 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       # 建立 / 更新專用分支
-      
+      # 確保可以提交
+      - name: Commit updated index to main
+        env:
+          TZ: Asia/Taipei
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/index.json
+          # 只有有變更才提交
+          if ! git diff --staged --quiet; then
+            git commit -m "build(index): refresh $(date -u +'%Y-%m-%dT%H:%M:%SZ') [skip ci]"
+            git push origin HEAD:main
+          else
+            echo "No index changes."
+          fi
       # 🔹 修正這裡：指定 PR base 為預設分支，避免 b
