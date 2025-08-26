@@ -1,6 +1,6 @@
 {
-  "version": "1.1.0",
-  "generated_at": "2025-08-26T03:11:16.058953Z",
+  "version": "1.0.1",
+  "generated_at": "2025-08-26T03:17:21.293444Z",
   "items": [
     {
       "id": "plan-2025-08-23-hackintosh-stability",
@@ -37,10 +37,10 @@
       "risk": "medium",
       "due": null,
       "tags": [
-        "research",
-        "stt",
+        "voice",
         "tts",
-        "voice"
+        "stt",
+        "research"
       ],
       "links": [],
       "path": "plans/ios18-voice-explore.md",
@@ -62,9 +62,9 @@
       "risk": "low",
       "due": null,
       "tags": [
+        "writing",
         "cadence",
-        "research",
-        "writing"
+        "research"
       ],
       "links": [],
       "path": "plans/dialogue-journal-cadence.md",
@@ -86,10 +86,10 @@
       "risk": "medium",
       "due": null,
       "tags": [
-        "automation",
-        "calendar",
         "daily",
-        "today-view"
+        "calendar",
+        "today-view",
+        "automation"
       ],
       "links": [],
       "path": "plans/daily-planning.md",
@@ -123,10 +123,10 @@
       "due": null,
       "tags": [
         "ai",
-        "minecraft",
-        "天堂私服",
         "直播",
-        "短影音"
+        "短影音",
+        "minecraft",
+        "天堂私服"
       ],
       "links": [],
       "path": "plans/Project-NyxStream.md",
@@ -152,10 +152,10 @@
       "risk": "medium",
       "due": null,
       "tags": [
+        "meta",
+        "infra",
         "automation",
         "github",
-        "infra",
-        "meta",
         "planning-hub"
       ],
       "links": [],
@@ -195,114 +195,6 @@
         "文件與素材",
         "後續建議"
       ]
-    }
-  ],
-  "tags_index": [
-    {
-      "tag": "research",
-      "count": 3
-    },
-    {
-      "tag": "automation",
-      "count": 2
-    },
-    {
-      "tag": "ai",
-      "count": 1
-    },
-    {
-      "tag": "cadence",
-      "count": 1
-    },
-    {
-      "tag": "calendar",
-      "count": 1
-    },
-    {
-      "tag": "daily",
-      "count": 1
-    },
-    {
-      "tag": "efi",
-      "count": 1
-    },
-    {
-      "tag": "github",
-      "count": 1
-    },
-    {
-      "tag": "infra",
-      "count": 1
-    },
-    {
-      "tag": "meta",
-      "count": 1
-    },
-    {
-      "tag": "minecraft",
-      "count": 1
-    },
-    {
-      "tag": "planning-hub",
-      "count": 1
-    },
-    {
-      "tag": "power",
-      "count": 1
-    },
-    {
-      "tag": "stt",
-      "count": 1
-    },
-    {
-      "tag": "today-view",
-      "count": 1
-    },
-    {
-      "tag": "tts",
-      "count": 1
-    },
-    {
-      "tag": "voice",
-      "count": 1
-    },
-    {
-      "tag": "writing",
-      "count": 1
-    },
-    {
-      "tag": "天堂私服",
-      "count": 1
-    },
-    {
-      "tag": "直播",
-      "count": 1
-    },
-    {
-      "tag": "短影音",
-      "count": 1
-    }
-  ],
-  "areas": [
-    {
-      "area": "hackintosh",
-      "count": 2
-    },
-    {
-      "area": "infra",
-      "count": 2
-    },
-    {
-      "area": "ios",
-      "count": 1
-    },
-    {
-      "area": "web",
-      "count": 1
-    },
-    {
-      "area": "writing",
-      "count": 1
     }
   ]
 }
