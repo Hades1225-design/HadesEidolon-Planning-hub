@@ -6,7 +6,7 @@ priority: P2
 status: inbox
 owner: Hades
 progress: 5
-risk: medium
+risk: 普通
 tags: [efi, power, research]
 links: []
 created: 2025-08-23
