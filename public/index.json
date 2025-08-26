@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2025-08-26T01:53:31.356184Z",
+  "generated_at": "2025-08-26T01:54:58.328537Z",
   "items": [
     {
       "id": "plan-2025-08-23-hackintosh-stability",
@@ -10,7 +10,7 @@
       "status": "inbox",
       "owner": "Hades",
       "progress": 5,
-      "risk": "medium",
+      "risk": "普通",
       "due": null,
       "tags": [],
       "links": [],
