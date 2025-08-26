@@ -1,6 +1,6 @@
 {
-  "version": "1.0.1",
-  "generated_at": "2025-08-26T03:17:21.293444Z",
+  "version": "2.0.0",
+  "generated_at": "2025-08-26T03:29:04.899272Z",
   "items": [
     {
       "id": "plan-2025-08-23-hackintosh-stability",
@@ -12,11 +12,7 @@
       "progress": 5,
       "risk": "medium",
       "due": null,
-      "tags": [
-        "efi",
-        "power",
-        "research"
-      ],
+      "tags": [],
       "links": [],
       "path": "plans/hackintosh-stability.md",
       "created": "2025-08-23",
@@ -36,12 +32,7 @@
       "progress": 15,
       "risk": "medium",
       "due": null,
-      "tags": [
-        "voice",
-        "tts",
-        "stt",
-        "research"
-      ],
+      "tags": [],
       "links": [],
       "path": "plans/ios18-voice-explore.md",
       "created": "2025-08-23",
@@ -61,11 +52,7 @@
       "progress": 10,
       "risk": "low",
       "due": null,
-      "tags": [
-        "writing",
-        "cadence",
-        "research"
-      ],
+      "tags": [],
       "links": [],
       "path": "plans/dialogue-journal-cadence.md",
       "created": "2025-08-23",
@@ -85,12 +72,7 @@
       "progress": 0,
       "risk": "medium",
       "due": null,
-      "tags": [
-        "daily",
-        "calendar",
-        "today-view",
-        "automation"
-      ],
+      "tags": [],
       "links": [],
       "path": "plans/daily-planning.md",
       "created": "2025-08-24",
@@ -121,13 +103,7 @@
       "progress": 0,
       "risk": "medium",
       "due": null,
-      "tags": [
-        "ai",
-        "直播",
-        "短影音",
-        "minecraft",
-        "天堂私服"
-      ],
+      "tags": [],
       "links": [],
       "path": "plans/Project-NyxStream.md",
       "created": "2025-08-25",
@@ -151,13 +127,7 @@
       "progress": 60,
       "risk": "medium",
       "due": null,
-      "tags": [
-        "meta",
-        "infra",
-        "automation",
-        "github",
-        "planning-hub"
-      ],
+      "tags": [],
       "links": [],
       "path": "plans/planning-hub-meta.md",
       "created": "2025-08-24",
@@ -196,5 +166,12 @@
         "後續建議"
       ]
     }
+  ],
+  "areas": [
+    "hackintosh",
+    "infra",
+    "ios",
+    "web",
+    "writing"
   ]
 }
