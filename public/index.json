@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2025-08-26T01:28:01.445796Z",
+  "generated_at": "2025-08-26T01:29:12.976115Z",
   "items": [
     {
       "id": "plan-2025-08-23-hackintosh-stability",
@@ -105,7 +105,7 @@
       "due": null,
       "tags": [],
       "links": [],
-      "path": "plans/inbox/Project-NyxStream.md",
+      "path": "plans/Project-NyxStream.md",
       "created": "2025-08-25",
       "updated": "2025-08-25",
       "preview": "## 目標",
