@@ -1,7 +1,27 @@
 {
   "version": "1.0.0",
-  "generated_at": "2025-08-26T01:31:03.975894Z",
+  "generated_at": "2025-08-26T01:31:44.957121Z",
   "items": [
+    {
+      "id": "plan-2025-08-23-dialogue-journal",
+      "title": "《對話錄》節奏探索",
+      "area": "writing",
+      "priority": "P2",
+      "status": "inbox",
+      "owner": "Hades",
+      "progress": 10,
+      "risk": "low",
+      "due": null,
+      "tags": [],
+      "links": [],
+      "path": "plans/dialogue-journal-cadence.md",
+      "created": "2025-08-23",
+      "updated": "2025-08-23",
+      "preview": "## 目標",
+      "headings": [
+        "目標"
+      ]
+    },
     {
       "id": "plan-2025-08-23-hackintosh-stability",
       "title": "黑蘋果穩定化研究",
@@ -35,26 +55,6 @@
       "tags": [],
       "links": [],
       "path": "plans/inbox/ios18-voice-explore.md",
-      "created": "2025-08-23",
-      "updated": "2025-08-23",
-      "preview": "## 目標",
-      "headings": [
-        "目標"
-      ]
-    },
-    {
-      "id": "plan-2025-08-23-dialogue-journal",
-      "title": "《對話錄》節奏探索",
-      "area": "writing",
-      "priority": "P2",
-      "status": "inbox",
-      "owner": "Hades",
-      "progress": 10,
-      "risk": "low",
-      "due": null,
-      "tags": [],
-      "links": [],
-      "path": "plans/inbox/dialogue-journal-cadence.md",
       "created": "2025-08-23",
       "updated": "2025-08-23",
       "preview": "## 目標",
