@@ -38,7 +38,7 @@ def parse_int(x):
 
 def collect():
     items = []
-    for sub in ["inbox", "ongoing", "done"]:
+    for sub in ["","inbox", "ongoing", "done"]:
         d = os.path.join(PLANS_DIR, sub)
         if not os.path.isdir(d): 
             continue
