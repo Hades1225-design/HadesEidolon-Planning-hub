@@ -39,25 +39,6 @@ def parse_tags_from_any(fm: dict, body: str, path: str, area: str, status: str, 
             if t and t not in STOPWORDS and len(t) > 1:
                 tags.add(t)
 
-    # 2) 內文 #hashtag
-    for m in re.findall(r"(?<!\w)#([A-Za-z0-9_\-\u4e00-\u9fff]+)", body):
-        t = norm_tag(m)
-        if t and t not in STOPWORDS and len(t) > 1:
-            tags.add(t)
-
-    # 3) 標題（H1~H3）關鍵詞
-    for heading in re.findall(r"^\s*#{1,3}\s+(.+)$", body, flags=re.M):
-        for p in re.split(r"[\s/|]+", heading):
-            p = norm_tag(p)
-            if p and p not in STOPWORDS and 1 < len(p) <= 24:
-                tags.add(p)
-
-    # 4) 系統化 tags：area / status / priority
-    for k, v in (("area", area), ("status", status), ("priority", priority)):
-        v = norm_tag(v or "")
-        if v:
-            tags.add(f"{k}:{v}")
-
     return sorted(tags)
 
 # -----------------------------
