@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2025-08-26T01:26:00.599543Z",
+  "generated_at": "2025-08-26T01:28:01.445796Z",
   "items": [
     {
       "id": "plan-2025-08-23-hackintosh-stability",
@@ -74,7 +74,7 @@
       "due": null,
       "tags": [],
       "links": [],
-      "path": "plans/inbox/daily-planning.md",
+      "path": "plans/daily-planning.md",
       "created": "2025-08-24",
       "updated": "2025-08-24",
       "preview": "## 目標",
