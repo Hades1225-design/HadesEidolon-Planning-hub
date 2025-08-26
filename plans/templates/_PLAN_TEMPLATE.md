@@ -6,7 +6,7 @@ priority: P2 # P0 | P1 | P2
 status: inbox # inbox | ongoing | done
 owner: Hades
 progress: 0        # 0~100
-risk: medium       # low | medium | high
+risk: 普通       # 一般 | 普通 | 優先
 tags: [research]
 links: []
 created: YYYY-MM-DD
