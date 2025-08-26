@@ -21,6 +21,16 @@
       const json = await res.json();
       DATA = json.items || [];
       render();
+      
+      // 動態填充 <select id="area">
+      const areas = json.areas || [];
+        areaEl.innerHTML = '<option value="">全部領域</option>'; // 先重置選項
+        areas.forEach(area => {
+          const opt = document.createElement('option');
+          opt.value = area;
+          opt.textContent = area;
+          areaEl.appendChild(opt);
+      });
 
       // 放在 load() 裡 res.json() 之後、render() 之後
       const infoEl = document.getElementById('index-info') 
