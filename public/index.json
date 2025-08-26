@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2025-08-26T01:29:12.976115Z",
+  "generated_at": "2025-08-26T01:29:52.333282Z",
   "items": [
     {
       "id": "plan-2025-08-23-hackintosh-stability",
@@ -152,7 +152,7 @@
       "due": "2025-09-10",
       "tags": [],
       "links": [],
-      "path": "plans/done/hp800g5dm-thermal-vents.md",
+      "path": "plans/hp800g5dm-thermal-vents.md",
       "created": "2025-08-23",
       "updated": "2025-08-24",
       "preview": "## 目標",
