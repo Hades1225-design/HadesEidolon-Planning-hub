@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2025-08-26T01:29:52.333282Z",
+  "generated_at": "2025-08-26T01:31:03.975894Z",
   "items": [
     {
       "id": "plan-2025-08-23-hackintosh-stability",
@@ -129,7 +129,7 @@
       "due": null,
       "tags": [],
       "links": [],
-      "path": "plans/ongoing/planning-hub-meta.md",
+      "path": "plans/planning-hub-meta.md",
       "created": "2025-08-24",
       "updated": "2025-08-25",
       "preview": "## 目標",
