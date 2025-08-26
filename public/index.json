@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0",
-  "generated_at": "2025-08-26T02:40:13.505646Z",
+  "version": "1.1.0",
+  "generated_at": "2025-08-26T03:04:03.834441Z",
   "items": [
     {
       "id": "plan-2025-08-23-hackintosh-stability",
@@ -12,7 +12,15 @@
       "progress": 5,
       "risk": "medium",
       "due": null,
-      "tags": [],
+      "tags": [
+        "area:hackintosh",
+        "efi",
+        "power",
+        "priority:p2",
+        "research",
+        "status:inbox",
+        "目標"
+      ],
       "links": [],
       "path": "plans/hackintosh-stability.md",
       "created": "2025-08-23",
@@ -32,7 +40,16 @@
       "progress": 15,
       "risk": "medium",
       "due": null,
-      "tags": [],
+      "tags": [
+        "area:ios",
+        "priority:p2",
+        "research",
+        "status:inbox",
+        "stt",
+        "tts",
+        "voice",
+        "目標"
+      ],
       "links": [],
       "path": "plans/ios18-voice-explore.md",
       "created": "2025-08-23",
@@ -52,7 +69,15 @@
       "progress": 10,
       "risk": "low",
       "due": null,
-      "tags": [],
+      "tags": [
+        "area:writing",
+        "cadence",
+        "priority:p2",
+        "research",
+        "status:inbox",
+        "writing",
+        "目標"
+      ],
       "links": [],
       "path": "plans/dialogue-journal-cadence.md",
       "created": "2025-08-23",
@@ -72,7 +97,33 @@
       "progress": 0,
       "risk": "medium",
       "due": null,
-      "tags": [],
+      "tags": [
+        "actions",
+        "area:infra",
+        "automation",
+        "calendar",
+        "daily",
+        "json",
+        "markdown",
+        "plan",
+        "priority:p2",
+        "schema草案",
+        "status:inbox",
+        "today-view",
+        "下一步next",
+        "今日任務連結計劃",
+        "今日目標top",
+        "備忘",
+        "收件匣",
+        "架構與資料流",
+        "模板",
+        "檔案結構新增",
+        "每日",
+        "目標",
+        "行程摘要",
+        "里程碑",
+        "風險與緩解"
+      ],
       "links": [],
       "path": "plans/daily-planning.md",
       "created": "2025-08-24",
@@ -103,7 +154,21 @@
       "progress": 0,
       "risk": "medium",
       "due": null,
-      "tags": [],
+      "tags": [
+        "ai",
+        "area:web",
+        "minecraft",
+        "priority:p2",
+        "status:inbox",
+        "下一步",
+        "天堂私服",
+        "目標",
+        "直播",
+        "短影音",
+        "背景",
+        "里程碑",
+        "驗收標準"
+      ],
       "links": [],
       "path": "plans/Project-NyxStream.md",
       "created": "2025-08-25",
@@ -127,7 +192,24 @@
       "progress": 60,
       "risk": "medium",
       "due": null,
-      "tags": [],
+      "tags": [
+        "2025-08-25",
+        "actions",
+        "area:infra",
+        "automation",
+        "board",
+        "github",
+        "infra",
+        "list",
+        "meta",
+        "planning-hub",
+        "priority:p0",
+        "status:ongoing",
+        "下一步next",
+        "目標",
+        "近期完成done",
+        "里程碑"
+      ],
       "links": [],
       "path": "plans/planning-hub-meta.md",
       "created": "2025-08-24",
@@ -150,7 +232,18 @@
       "progress": 100,
       "risk": "high",
       "due": "2025-09-10",
-      "tags": [],
+      "tags": [
+        "area:hackintosh",
+        "priority:p1",
+        "status:done",
+        "後續建議",
+        "成果摘要",
+        "技術細節摘要",
+        "文件與素材",
+        "目標",
+        "里程碑",
+        "驗證與測試"
+      ],
       "links": [],
       "path": "plans/hp800g5dm-thermal-vents.md",
       "created": "2025-08-23",
@@ -165,6 +258,278 @@
         "文件與素材",
         "後續建議"
       ]
+    }
+  ],
+  "tags_index": [
+    {
+      "tag": "目標",
+      "count": 7
+    },
+    {
+      "tag": "priority:p2",
+      "count": 5
+    },
+    {
+      "tag": "status:inbox",
+      "count": 5
+    },
+    {
+      "tag": "里程碑",
+      "count": 4
+    },
+    {
+      "tag": "research",
+      "count": 3
+    },
+    {
+      "tag": "actions",
+      "count": 2
+    },
+    {
+      "tag": "area:hackintosh",
+      "count": 2
+    },
+    {
+      "tag": "area:infra",
+      "count": 2
+    },
+    {
+      "tag": "automation",
+      "count": 2
+    },
+    {
+      "tag": "下一步next",
+      "count": 2
+    },
+    {
+      "tag": "2025-08-25",
+      "count": 1
+    },
+    {
+      "tag": "ai",
+      "count": 1
+    },
+    {
+      "tag": "area:ios",
+      "count": 1
+    },
+    {
+      "tag": "area:web",
+      "count": 1
+    },
+    {
+      "tag": "area:writing",
+      "count": 1
+    },
+    {
+      "tag": "board",
+      "count": 1
+    },
+    {
+      "tag": "cadence",
+      "count": 1
+    },
+    {
+      "tag": "calendar",
+      "count": 1
+    },
+    {
+      "tag": "daily",
+      "count": 1
+    },
+    {
+      "tag": "efi",
+      "count": 1
+    },
+    {
+      "tag": "github",
+      "count": 1
+    },
+    {
+      "tag": "infra",
+      "count": 1
+    },
+    {
+      "tag": "json",
+      "count": 1
+    },
+    {
+      "tag": "list",
+      "count": 1
+    },
+    {
+      "tag": "markdown",
+      "count": 1
+    },
+    {
+      "tag": "meta",
+      "count": 1
+    },
+    {
+      "tag": "minecraft",
+      "count": 1
+    },
+    {
+      "tag": "plan",
+      "count": 1
+    },
+    {
+      "tag": "planning-hub",
+      "count": 1
+    },
+    {
+      "tag": "power",
+      "count": 1
+    },
+    {
+      "tag": "priority:p0",
+      "count": 1
+    },
+    {
+      "tag": "priority:p1",
+      "count": 1
+    },
+    {
+      "tag": "schema草案",
+      "count": 1
+    },
+    {
+      "tag": "status:done",
+      "count": 1
+    },
+    {
+      "tag": "status:ongoing",
+      "count": 1
+    },
+    {
+      "tag": "stt",
+      "count": 1
+    },
+    {
+      "tag": "today-view",
+      "count": 1
+    },
+    {
+      "tag": "tts",
+      "count": 1
+    },
+    {
+      "tag": "voice",
+      "count": 1
+    },
+    {
+      "tag": "writing",
+      "count": 1
+    },
+    {
+      "tag": "下一步",
+      "count": 1
+    },
+    {
+      "tag": "今日任務連結計劃",
+      "count": 1
+    },
+    {
+      "tag": "今日目標top",
+      "count": 1
+    },
+    {
+      "tag": "備忘",
+      "count": 1
+    },
+    {
+      "tag": "天堂私服",
+      "count": 1
+    },
+    {
+      "tag": "後續建議",
+      "count": 1
+    },
+    {
+      "tag": "成果摘要",
+      "count": 1
+    },
+    {
+      "tag": "技術細節摘要",
+      "count": 1
+    },
+    {
+      "tag": "收件匣",
+      "count": 1
+    },
+    {
+      "tag": "文件與素材",
+      "count": 1
+    },
+    {
+      "tag": "架構與資料流",
+      "count": 1
+    },
+    {
+      "tag": "模板",
+      "count": 1
+    },
+    {
+      "tag": "檔案結構新增",
+      "count": 1
+    },
+    {
+      "tag": "每日",
+      "count": 1
+    },
+    {
+      "tag": "直播",
+      "count": 1
+    },
+    {
+      "tag": "短影音",
+      "count": 1
+    },
+    {
+      "tag": "背景",
+      "count": 1
+    },
+    {
+      "tag": "行程摘要",
+      "count": 1
+    },
+    {
+      "tag": "近期完成done",
+      "count": 1
+    },
+    {
+      "tag": "風險與緩解",
+      "count": 1
+    },
+    {
+      "tag": "驗收標準",
+      "count": 1
+    },
+    {
+      "tag": "驗證與測試",
+      "count": 1
+    }
+  ],
+  "areas": [
+    {
+      "area": "hackintosh",
+      "count": 2
+    },
+    {
+      "area": "infra",
+      "count": 2
+    },
+    {
+      "area": "ios",
+      "count": 1
+    },
+    {
+      "area": "web",
+      "count": 1
+    },
+    {
+      "area": "writing",
+      "count": 1
     }
   ]
 }
