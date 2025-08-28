@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated_at": "2025-08-26T05:19:06.181703Z",
+  "generated_at": "2025-08-28T07:14:01.389458Z",
   "items": [
     {
       "id": "plan-2025-08-23-hackintosh-stability",
@@ -23,26 +23,6 @@
       ]
     },
     {
-      "id": "plan-2025-08-23-ios18-voice",
-      "title": "iOS18 語音互動探索",
-      "area": "ios",
-      "priority": "P2",
-      "status": "inbox",
-      "owner": "Hades",
-      "progress": 15,
-      "risk": "medium",
-      "due": null,
-      "tags": [],
-      "links": [],
-      "path": "plans/ios18-voice-explore.md",
-      "created": "2025-08-23",
-      "updated": "2025-08-23",
-      "preview": "## 目標",
-      "headings": [
-        "目標"
-      ]
-    },
-    {
       "id": "plan-2025-08-23-dialogue-journal",
       "title": "《對話錄》節奏探索",
       "area": "writing",
@@ -55,6 +35,26 @@
       "tags": [],
       "links": [],
       "path": "plans/dialogue-journal-cadence.md",
+      "created": "2025-08-23",
+      "updated": "2025-08-23",
+      "preview": "## 目標",
+      "headings": [
+        "目標"
+      ]
+    },
+    {
+      "id": "plan-2025-08-23-ios18-voice",
+      "title": "iOS18 語音互動探索",
+      "area": "ios",
+      "priority": "P2",
+      "status": "inbox",
+      "owner": "Hades",
+      "progress": 15,
+      "risk": "medium",
+      "due": null,
+      "tags": [],
+      "links": [],
+      "path": "plans/ios18-voice-explore.md",
       "created": "2025-08-23",
       "updated": "2025-08-23",
       "preview": "## 目標",
@@ -164,6 +164,29 @@
         "驗證與測試",
         "文件與素材",
         "後續建議"
+      ]
+    },
+    {
+      "id": "plan-2025-08-28-reorder-ui",
+      "title": "Reorder 系統優化與架構確認",
+      "area": "web",
+      "priority": "P1",
+      "status": "ongoing # inbox | ongoing | done",
+      "owner": "Hades",
+      "progress": 70,
+      "risk": "medium",
+      "due": null,
+      "tags": [],
+      "links": [],
+      "path": "plans/Lineage-Boss-Time.md",
+      "created": "2025-08-26",
+      "updated": "2025-08-28",
+      "preview": "## 目標",
+      "headings": [
+        "目標",
+        "任務",
+        "風險",
+        "下一步"
       ]
     }
   ],
