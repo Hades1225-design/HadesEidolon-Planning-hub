@@ -3,7 +3,7 @@ id: plan-2025-08-28-lineage-boss-time
 title: 天堂 BOSS 時間管理系統
 area: web
 priority: P1
-status: ongoing   # inbox | ongoing | done
+status: ongoing
 owner: Hades
 progress: 70
 risk: medium
