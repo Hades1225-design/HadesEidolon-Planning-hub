@@ -40,7 +40,7 @@
       document.querySelector('.toolbar .summary')?.appendChild(infoEl);
       const ts = new Date(json.generated_at).toLocaleString('zh-TW', { hour12:false });
       infoEl.textContent = `索引 ${ts}`;
-@@ -47,10 +70,10 @@
+      
       document.getElementById('reload-data')?.addEventListener('click', async () => {
         // 重新載入也走同一條路徑（內含退回與時間戳）
          const json = await fetchIndex(INDEX_URL);
