@@ -10,7 +10,7 @@
   const viewListBtn = $('#view-list');
   const viewBoardBtn = $('#view-board');
   const boardEl = $('#board');
-  const INDEX_URL = '../public/index.json'
+  const INDEX_URL = 'https://cdn.jsdelivr.net/gh/Hades1225-design/HadesEidolon-Planning-hub@latest/public/index.json';
 
   let DATA = [];
   let VIEW = 'list';
