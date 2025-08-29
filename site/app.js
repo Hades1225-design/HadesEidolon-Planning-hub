@@ -18,8 +18,8 @@
 
   async function load() {
     try {
-      const res = await fetch(INDEX_URL, {cache: 'no-store'});
-      const json = await res.json();
+      // 透過 fetchIndex：先 CDN，失敗再 Raw（附時間戳避開快取）
+      const json = await fetchIndex(INDEX_URL);
       DATA = json.items || [];
       render();
       
@@ -40,11 +40,11 @@
       document.querySelector('.toolbar .summary')?.appendChild(infoEl);
       const ts = new Date(json.generated_at).toLocaleString('zh-TW', { hour12:false });
       infoEl.textContent = `索引 ${ts}`;
-
+@@ -47,10 +70,10 @@
       document.getElementById('reload-data')?.addEventListener('click', async () => {
-        const url = `${INDEX_URL}?v=${Date.now()}`;
-        const res = await fetch(url, { cache:'no-store' });
-        const json = await res.json();
+        // 重新載入也走同一條路徑（內含退回與時間戳）
+         const json = await fetchIndex(INDEX_URL);
+         DATA
         DATA = json.items || [];
         render();
       });
